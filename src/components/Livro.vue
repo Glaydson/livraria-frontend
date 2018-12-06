@@ -31,12 +31,7 @@ import http from "../http-common";
  
 export default {
   name: "livro",
-  props: ["livro"],
-  data() {
-    return {
-      autores: this.livro.autores
-    };
-  },
+  props: ["livro", "autores"],
   methods: {
     /* eslint-disable no-console */
     deleteLivro() {

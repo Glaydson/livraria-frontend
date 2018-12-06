@@ -4,9 +4,9 @@
             <h3>Livraria</h3>
         </div>
         <nav>
-            <router-link class="btn btn-primary" to="/">Livros</router-link>
-            <router-link class="btn btn-primary" to="/adicionar">Adicionar</router-link>
-            <router-link class="btn btn-primary" to="/buscar">Buscar</router-link>
+            <router-link class="btn btn-primary" to="/">Lista de Livros</router-link>
+            <router-link class="btn btn-primary" to="/adicionar">Adicionar Livro</router-link>
+            <router-link class="btn btn-primary" to="/buscar">Buscar Livro</router-link>
         </nav>
         <br/>
         <router-view/>

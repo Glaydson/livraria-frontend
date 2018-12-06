@@ -15,6 +15,15 @@
           <label for="preco">Preço</label>
           <input type="number" class="form-control" id="preco" required v-model="livro.preco" name="preco">
         </div>
+
+        <div class="form-group">
+          <label for="autores">Autores</label><br/>
+          <select v-model="livro.autores" multiple>
+            <option v-for= "autor in autores" v-bind:key="autor.id" v-bind:value="autor">
+              {{autor.nome}}
+            </option>
+          </select>
+        </div>
     
         <button v-on:click="salvaLivro" class="btn btn-success">Salvar</button>
     </div>
@@ -37,10 +46,26 @@ export default {
         id: 0,
         titulo: "",
         numeroPaginas: 0,
-        preco: 0
+        preco: 0,
+        autores: []
       },
+      autores: [],
       submitted: false
     };
+  },
+  
+  mounted: function() {
+    /* eslint-disable no-console */
+    http
+        .get("/autor/todos")
+        .then(response => {
+          this.autores = response.data; // JSON are parsed automatically.
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+        /* eslint-enable no-console */
   },
   methods: {
     /* eslint-disable no-console */
@@ -48,9 +73,10 @@ export default {
       var data = {
         titulo: this.livro.titulo,
         numeroPaginas: this.livro.numeroPaginas,
-        preco: this.livro.preco
+        preco: this.livro.preco,
+        autores: this.livro.autores
       };
- 
+
       http
         .post("/livro/novo", data)
         .then(response => {
@@ -66,10 +92,21 @@ export default {
     novoLivro() {
       this.submitted = false;
       this.livro = {};
+    },
+    obterAutores() {
+      http
+        .get("/autor/todos")
+        .then(response => {
+          this.autores = response.data; // JSON are parsed automatically.
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+      },
+      /* eslint-enable no-console */
     }
-    /* eslint-enable no-console */
-  }
-};
+}
 </script>
  
 <style>

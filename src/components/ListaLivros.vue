@@ -6,7 +6,7 @@
                 <li v-for="(livro, index) in livros" :key="index">
                     <router-link :to="{
                             name: 'livro-details',
-                            params: { livro: livro, id: livro.livroID }
+                            params: { livro: livro, id: livro.livroID, autores: livro.autores }
                         }">
                             {{livro.livroID}} - {{livro.titulo}}
                     </router-link>
@@ -56,7 +56,7 @@ export default {
 <style>
 .list {
   text-align: left;
-  max-width: 450px;
+  max-width: 800px;
   margin: auto;
 }
 </style>
