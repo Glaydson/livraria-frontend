@@ -32,7 +32,7 @@ export default {
     /* eslint-disable no-console */
     buscarLivros() {
       http
-        .get("/livro/titulo/" + this.titulo)
+        .get("/livro/buscar", { params: {titulo: this.titulo }})
         .then(response => {
           this.livros = response.data; // JSON are parsed automatically.
           console.log(response.data);

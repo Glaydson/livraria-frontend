@@ -4,9 +4,9 @@ import ListaLivros from "./components/ListaLivros.vue";
 import AdicionaLivro from "./components/AdicionaLivro.vue";
 import BuscaLivros from "./components/BuscaLivros.vue";
 import Livro from "./components/Livro.vue";
- 
+
 Vue.use(Router);
- 
+
 export default new Router({
   mode: "history",
   routes: [

@@ -10,7 +10,14 @@
     <div>
       <label>Preço: </label> {{this.livro.preco}}
     </div>
-  
+    <div>
+      <label>Autores: </label> 
+      <ol>
+        <li v-for="(autor, index) in autores" :key="index">
+          {{ autor.nome}}
+        </li>
+      </ol>
+    </div>
     <span class="button is-small btn-danger" v-on:click="deleteLivro()">Delete</span>
   </div>
   <div v-else>
@@ -25,6 +32,11 @@ import http from "../http-common";
 export default {
   name: "livro",
   props: ["livro"],
+  data() {
+    return {
+      autores: this.livro.autores
+    };
+  },
   methods: {
     /* eslint-disable no-console */
     deleteLivro() {
