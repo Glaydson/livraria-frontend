@@ -114,29 +114,7 @@ export default {
       this.submitted = false;
       this.livro = {};
     },
-    /*obterAutores() {
-      http
-        .get("/autor/todos")
-        .then(response => {
-          this.autores = response.data; // JSON are parsed automatically.
-          console.log(response.data);
-        })
-        .catch(e => {
-          console.log(e);
-        });
-      },
-    obterEditoras() {
-    http
-      .get("/editora/todos")
-      .then(response => {
-        this.editoras = response.data; // JSON are parsed automatically.
-        console.log(response.data);
-      })
-      .catch(e => {
-        console.log(e);
-      });
-    },*/
-      /* eslint-enable no-console */
+    /* eslint-enable no-console */
   }
 }
 </script>

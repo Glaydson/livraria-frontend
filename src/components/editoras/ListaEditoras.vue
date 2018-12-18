@@ -1,14 +1,14 @@
 <template>
     <div class="list row">
         <div class="col-md-6">
-            <h4>Lista de Livros</h4>
+            <h4>Lista de Editoras</h4>
             <ul>
-                <li v-for="(livro, index) in livros" :key="index">
+                <li v-for="(editora, index) in editoras" :key="index">
                     <router-link :to="{
-                            name: 'livro-details',
-                            params: { livro: livro, id: livro.livroID }
+                            name: 'editora-details',
+                            params: { editora: editora, id: editora.editoraID }
                         }">
-                            {{livro.livroID}} - {{livro.titulo}}
+                            {{editora.editoraID}} - {{editora.nome}}
                     </router-link>
                 </li>
             </ul>
@@ -23,15 +23,15 @@
 import http from "../../http-common";
  
 export default {
-  name: "lista-livros",
+  name: "lista-editoras",
   data() {
     return {
-      livros: []
+      editoras: []
     };
   },
   methods: {
     /* eslint-disable no-console */
-    obterLivros() {
+    obterEditoras() {
       http
         .get("/livro/todos")
         .then(response => {
@@ -42,6 +42,17 @@ export default {
           console.log(e);
         });
     },
+    /*obterEditoras() {
+    http
+      .get("/editora/todos")
+      .then(response => {
+        this.editoras = response.data; // JSON are parsed automatically.
+        console.log(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+    },*/
     refreshList() {
       this.obterLivros();
       //this.obterEditoras();
