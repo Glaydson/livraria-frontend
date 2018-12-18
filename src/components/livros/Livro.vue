@@ -13,12 +13,15 @@
     <div>
       <label>Autores: </label> 
       <ol>
-        <li v-for="(autor, index) in autores" :key="index">
+        <li v-for="(autor, index) in livro.autores" :key="index">
           {{ autor.nome}}
         </li>
       </ol>
     </div>
-    <span class="button is-small btn-danger" v-on:click="deleteLivro()">Delete</span>
+    <div>
+      <label>Editora: </label> {{this.livro.editora.nome}}
+    </div>
+    <span class="btn btn-danger" v-on:click="deleteLivro()">Delete</span>
   </div>
   <div v-else>
     <br/>
@@ -27,11 +30,11 @@
 </template>
  
 <script>
-import http from "../http-common";
+import http from "../../http-common";
  
 export default {
   name: "livro",
-  props: ["livro", "autores"],
+  props: ["livro"],
   methods: {
     /* eslint-disable no-console */
     deleteLivro() {

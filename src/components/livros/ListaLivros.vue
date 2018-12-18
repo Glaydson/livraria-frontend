@@ -6,7 +6,7 @@
                 <li v-for="(livro, index) in livros" :key="index">
                     <router-link :to="{
                             name: 'livro-details',
-                            params: { livro: livro, id: livro.livroID, autores: livro.autores }
+                            params: { livro: livro, id: livro.livroID }
                         }">
                             {{livro.livroID}} - {{livro.titulo}}
                     </router-link>
@@ -20,7 +20,7 @@
 </template>
  
 <script>
-import http from "../http-common";
+import http from "../../http-common";
  
 export default {
   name: "lista-livros",
@@ -42,13 +42,26 @@ export default {
           console.log(e);
         });
     },
+    /*obterEditoras() {
+    http
+      .get("/editora/todos")
+      .then(response => {
+        this.editoras = response.data; // JSON are parsed automatically.
+        console.log(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+    },*/
     refreshList() {
       this.obterLivros();
+      //this.obterEditoras();
     }
     /* eslint-enable no-console */
   },
   mounted() {
     this.obterLivros();
+    //this.obterEditoras();
   }
 };
 </script>

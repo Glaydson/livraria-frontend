@@ -24,6 +24,15 @@
             </option>
           </select>
         </div>
+
+        <div class="form-group">
+          <label for="editora">Editora</label><br/>
+          <select v-model="livro.editora" size="3">
+            <option v-for= "editora in editoras" v-bind:key="editora.id" v-bind:value="editora">
+              {{editora.nome}}
+            </option>
+          </select>
+        </div>
     
         <button v-on:click="salvaLivro" class="btn btn-success">Salvar</button>
     </div>
@@ -36,7 +45,7 @@
 </template>
  
 <script>
-import http from "../http-common";
+import http from "../../http-common";
  
 export default {
   name: "adiciona-livro",
@@ -47,9 +56,11 @@ export default {
         titulo: "",
         numeroPaginas: 0,
         preco: 0,
-        autores: []
+        autores: [],
+        editora: ""
       },
       autores: [],
+      editoras: [],
       submitted: false
     };
   },
@@ -57,14 +68,23 @@ export default {
   mounted: function() {
     /* eslint-disable no-console */
     http
-        .get("/autor/todos")
-        .then(response => {
-          this.autores = response.data; // JSON are parsed automatically.
-          console.log(response.data);
-        })
-        .catch(e => {
-          console.log(e);
-        });
+      .get("/autor/todos")
+      .then(response => {
+        this.autores = response.data; // JSON are parsed automatically.
+        console.log(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+    http
+      .get("/editora/todos")
+      .then(response => {
+        this.editoras = response.data;
+        console.log(response.data)
+      })
+      .catch(e => {
+        console.log(e);
+      });
         /* eslint-enable no-console */
   },
   methods: {
@@ -74,7 +94,8 @@ export default {
         titulo: this.livro.titulo,
         numeroPaginas: this.livro.numeroPaginas,
         preco: this.livro.preco,
-        autores: this.livro.autores
+        autores: this.livro.autores,
+        editora: this.livro.editora
       };
 
       http
@@ -93,7 +114,7 @@ export default {
       this.submitted = false;
       this.livro = {};
     },
-    obterAutores() {
+    /*obterAutores() {
       http
         .get("/autor/todos")
         .then(response => {
@@ -104,8 +125,19 @@ export default {
           console.log(e);
         });
       },
+    obterEditoras() {
+    http
+      .get("/editora/todos")
+      .then(response => {
+        this.editoras = response.data; // JSON are parsed automatically.
+        console.log(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+    },*/
       /* eslint-enable no-console */
-    }
+  }
 }
 </script>
  

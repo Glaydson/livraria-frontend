@@ -1,9 +1,10 @@
 import Vue from "vue";
 import Router from "vue-router";
-import ListaLivros from "./components/ListaLivros.vue";
-import AdicionaLivro from "./components/AdicionaLivro.vue";
-import BuscaLivros from "./components/BuscaLivros.vue";
-import Livro from "./components/Livro.vue";
+import ListaLivros from "./components/livros/ListaLivros.vue";
+import AdicionaLivro from "./components/livros/AdicionaLivro.vue";
+import BuscaLivros from "./components/livros/BuscaLivros.vue";
+import Livro from "./components/livros/Livro.vue";
+import Home from  "./Home.vue";
 
 Vue.use(Router);
 
@@ -12,7 +13,12 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "livros",
+      name: "home",
+      component: Home,
+    },
+    {
+      path: "/listarLivros",
+      name: "listarLivros",
       alias: "/livro",
       component: ListaLivros,
       children: [
@@ -25,12 +31,12 @@ export default new Router({
       ]
     },
     {
-      path: "/adicionar",
-      name: "adicionar",
+      path: "/adicionarLivro",
+      name: "adicionarLivro",
       component: AdicionaLivro
     },
     {
-      path: "/buscar",
+      path: "/buscarLivro",
       name: "buscar",
       component: BuscaLivros
     }
